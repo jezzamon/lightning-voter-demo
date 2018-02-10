@@ -1,7 +1,7 @@
 angular.module('app').directive('unreviewedTalk', function() {
   return {
     templateUrl: '/home/unreviewedTalk.html',
-    scope: {},
+    scope: {}, // empty object , scoped properties moved to bindToController
     controllerAs: '$ctrl', // using $ctrl as opposed to recommended 'vm', for ng 1.5 conventions
     bindToController: {
       session: '=',
