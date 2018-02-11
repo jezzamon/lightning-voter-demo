@@ -60,16 +60,13 @@ app.config(function($routeProvider) {
       }
     })
     .when('/admin/createusers', {
-      controller: 'createUsersCtrl',
-      templateUrl: 'admin/createUsers.html',
-      controllerAs: 'vm',
+      template: '<create-users admin="$resolve.admin"></create-users>',
       resolve:  {
         admin: routeResolvers.requireAdmin
       }
     })
     .when('/home', {
       template: '<home user-sessions="$resolve.userSessions"></home>',
-      controllerAs: 'vm',
       resolve: {
         login:routeResolvers.loggedIn,
         userSessions: routeResolvers.userSessions
