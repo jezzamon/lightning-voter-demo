@@ -70,8 +70,7 @@ app.config(function($routeProvider) {
       }
     })
     .when('/home', {
-      controller: 'homeCtrl',
-      templateUrl: 'home/home.html',
+      template: '<home user-sessions="$resolve.userSessions"></home>',
       controllerAs: 'vm',
       resolve: {
         login:routeResolvers.loggedIn,
@@ -81,7 +80,7 @@ app.config(function($routeProvider) {
     .when('/profile', {
       controller: 'profileCtrl',
       templateUrl: 'profile/profile.html',
-      controllerAs: 'vm',
+      // 1.5 - sets $ctrl as controllerAs automatically
       resolve: {
         userProfile: routeResolvers.loggedIn,
       }
