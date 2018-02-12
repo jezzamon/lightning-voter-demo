@@ -1,9 +1,6 @@
-angular.module('app').directive('unreviewedTalk', function() {
-  return {
+angular.module('app').component('unreviewedTalk', {
     templateUrl: '/home/unreviewedTalk.html',
-    scope: {}, // empty object , scoped properties moved to bindToController
-    controllerAs: '$ctrl', // using $ctrl as opposed to recommended 'vm', for ng 1.5 conventions
-    bindToController: {
+    bindings: {
       session: '=',
       voteYes: '&',
       voteNo: '&'
@@ -18,5 +15,5 @@ angular.module('app').directive('unreviewedTalk', function() {
         this.voteNo();
       }
     }
-  }
+  
 })
