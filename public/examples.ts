@@ -58,3 +58,30 @@ j.setFullName("");
 
 
 
+export class Session {
+  title: string;
+  length: number;
+  abstract: string;
+  owner: any;
+  votecount: number;
+
+  constructor(title:string, length:number, abstract:string, owner:any) {
+    this.title = title;
+    this.length = length;
+    this.abstract = abstract;
+    this.owner = owner;
+    this.votecount = 0;
+  }
+
+  vote() {
+    this.votecount++;
+  }
+}
+
+// destructuring example
+
+var obj = {a: 3, b: 4}
+
+var {a,b } = obj;
+console.log(`a is ${a} and b is ${b}`);
+

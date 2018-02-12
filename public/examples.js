@@ -35,4 +35,22 @@ var JoeBloClass = (function () {
 }());
 var j = new JoeBloClass("", "");
 j.setFullName("");
+var Session = (function () {
+    function Session(title, length, abstract, owner) {
+        this.title = title;
+        this.length = length;
+        this.abstract = abstract;
+        this.owner = owner;
+        this.votecount = 0;
+    }
+    Session.prototype.vote = function () {
+        this.votecount++;
+    };
+    return Session;
+}());
+exports.Session = Session;
+// destructuring example
+var obj = { a: 3, b: 4 };
+var a = obj.a, b = obj.b;
+console.log("a is " + a + " and b is " + b);
 //# sourceMappingURL=examples.js.map

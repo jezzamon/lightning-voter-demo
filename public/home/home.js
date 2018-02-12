@@ -1,46 +1,37 @@
 // change to component for 1.5
 angular.module('app').component('home', {
-
-  templateUrl: '/home/home.html', //add templateUrl for 1.5
-  bindings: { // bindings prop for 1.5
-    userSessions: '=' // (pass in scope of userSessions - access by $ctrl.userSessions)
-  },  
-  // put function in controller property for 1.5
-  controller: function(currentIdentity, sessions, 
-    toastr, unreviewedSessionCount) {
-      
-      
-    this.currentUser = currentIdentity.currentUser
-    
-    this.setNextSessionToReview = function() {
-      sessions.getNextUnreviewedSession(currentIdentity.currentUser.id).then(function(response) {
-        this.currentSessionToReview = response.data;
-      }.bind(this))
-    }
-    this.setNextSessionToReview();
-    
-    
-    this.voteYes = function() {
-      sessions.incrementVote(this.currentSessionToReview.id)
-      .then(function() {
-        return sessions.addReviewedSession(this.currentUser.id, this.currentSessionToReview.id)
-      }.bind(this))
-      .then(function() {
+    templateUrl: '/home/home.html',
+    bindings: {
+        userSessions: '=' // (pass in scope of userSessions - access by $ctrl.userSessions)
+    },
+    // put function in controller property for 1.5
+    controller: function (currentIdentity, sessions, toastr, unreviewedSessionCount) {
+        this.currentUser = currentIdentity.currentUser;
+        this.setNextSessionToReview = function () {
+            var _this = this;
+            sessions.getNextUnreviewedSession(currentIdentity.currentUser.id).then(function (response) {
+                _this.currentSessionToReview = response.data;
+            });
+        };
         this.setNextSessionToReview();
-        
-        // pull updated value
-        unreviewedSessionCount.updateUnreviewedSessionCount();
-      }.bind(this))
+        this.voteYes = function () {
+            var _this = this;
+            sessions.incrementVote(this.currentSessionToReview.id)
+                .then(function () { sessions.addReviewedSession(_this.currentUser.id, _this.currentSessionToReview.id); })
+                .then(function () {
+                this.setNextSessionToReview();
+                // pull updated value
+                unreviewedSessionCount.updateUnreviewedSessionCount();
+            }.bind(this));
+        };
+        this.voteNo = function () {
+            sessions.addReviewedSession(this.currentUser.id, this.currentSessionToReview.id)
+                .then(function () {
+                this.setNextSessionToReview();
+                // pull updated value
+                unreviewedSessionCount.updateUnreviewedSessionCount();
+            }.bind(this));
+        };
     }
-    
-    this.voteNo = function() {
-      sessions.addReviewedSession(this.currentUser.id, this.currentSessionToReview.id)
-      .then(function() {
-        this.setNextSessionToReview();
-
-        // pull updated value
-        unreviewedSessionCount.updateUnreviewedSessionCount();
-      }.bind(this))
-    }
-  }
-})
+});
+//# sourceMappingURL=home.js.map
