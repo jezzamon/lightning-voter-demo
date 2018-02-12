@@ -71,8 +71,8 @@ app.config(function($routeProvider) {
       }
     })
     .when('/profile', {
-      controller: 'profileCtrl',
-      templateUrl: 'profile/profile.html',
+      controller: 'profile',
+      template: '<profile></profile>',
       // 1.5 - sets $ctrl as controllerAs automatically
       resolve: {
         userProfile: routeResolvers.loggedIn,
