@@ -3,7 +3,7 @@ angular.module('app').component('login', {
   templateUrl: '/security/login.html',
   bindings: {},
   controller: class LoginCtrl {
-    
+    email: string;
     constructor(
       public $location, 
       public currentIdentity, 

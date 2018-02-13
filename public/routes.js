@@ -71,7 +71,6 @@ app.config(function($routeProvider) {
       }
     })
     .when('/profile', {
-      controller: 'profile',
       template: '<profile></profile>',
       // 1.5 - sets $ctrl as controllerAs automatically
       resolve: {
