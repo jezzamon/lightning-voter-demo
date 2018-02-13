@@ -11,18 +11,6 @@ angular.module('app').component('login', {
                 $location.path('/home');
             }
         }
-        // $location: any;
-        // auth: any;
-        // toastr: any;
-        // email: string;
-        // constructor($location, currentIdentity, auth, toastr) {
-        //   this.$location = $location;
-        //   this.auth = auth;
-        //   this.toastr = toastr;
-        //     if(currentIdentity.authenticated()) {
-        //       $location.path('/home');
-        //     }
-        // }
         LoginCtrl.prototype.login = function () {
             var _this = this;
             this.auth.login({
