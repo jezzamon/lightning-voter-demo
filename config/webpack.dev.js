@@ -54,7 +54,7 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        'ENV': JSON.stringiy(ENV)
+        'ENV': JSON.stringify(ENV)
       }
     })
   ]
