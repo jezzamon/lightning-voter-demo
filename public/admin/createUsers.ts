@@ -1,5 +1,5 @@
 angular.module('app').component('createUsers', { 
-  templateUrl: '/admin/createUsers.html',
+  templateUrl: './admin/createUsers.html',
   bindings: {
   },
   controller: function(nameParser, users, toastr) {

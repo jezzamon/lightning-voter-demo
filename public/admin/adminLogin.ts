@@ -1,5 +1,5 @@
 angular.module('app').component('adminLogin', { 
-  templateUrl: '/admin/adminLogin.html',
+  templateUrl: './admin/adminLogin.html',
   bindings: {
   },
   controller: function($location, currentIdentity, auth, toastr) {

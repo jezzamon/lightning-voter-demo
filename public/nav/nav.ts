@@ -1,5 +1,5 @@
 angular.module('app').component('nav', {
-  templateUrl: '/nav/nav.html',
+  templateUrl: './nav/nav.html',
   bindings: {
   },
   controller: function(currentIdentity, sessions, unreviewedSessionCount) {

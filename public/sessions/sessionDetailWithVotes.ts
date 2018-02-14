@@ -1,5 +1,5 @@
 angular.module('app').component('sessionDetailWithVotes', {
-  templateUrl: '/sessions/sessionDetailWithVotes.html',
+  templateUrl: './sessions/sessionDetailWithVotes.html',
   bindings: {
     session: '=',
     initialCollapsed: '@'
