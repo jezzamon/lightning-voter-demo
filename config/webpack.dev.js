@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      miniChunks: Infinity
+      minChunks: Infinity
     }),
 
     new webpack.SourceMapDevToolPlugin({
