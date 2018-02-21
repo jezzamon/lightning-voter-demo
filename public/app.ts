@@ -9,9 +9,12 @@ app.run(function($rootScope, $location) {
     }
   })
 })
-angular.element(document).ready(() => {
-  angular.bootstrap(document.body, ['app'])
-});
+
+// Turn off angular bootstrapping - now using angular2 bootstrapping
+
+// angular.element(document).ready(() => {
+//   angular.bootstrap(document.body, ['app'])
+// });
 
 app.config(['$locationProvider', function($locationProvider) {
  $locationProvider.hashPrefix('');
