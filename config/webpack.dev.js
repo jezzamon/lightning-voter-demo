@@ -68,10 +68,7 @@ module.exports = {
       }
     }),
 
-    new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('./src'),
-      {}
-    )
+    // plugin to handle supressing of unecssary critical warnings when webpack tries to import core.js
+    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, helpers.root(__dirname, './src'))
   ]
 }
