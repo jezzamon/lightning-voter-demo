@@ -8,8 +8,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { UpgradeModule } from '@angular/upgrade/static';
 
+import { AppModule } from './app/app.module';
+
+// Bootstrap app by referencing the app module
 // bootsrap our angular 2 app first then bootstrap angular 1 using upgrade module
-platformBrowserDynamic().bootstrapModule().then(platformRef => {
+platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
 
   const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.documentElement, ['app']);
