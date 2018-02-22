@@ -1,3 +1,4 @@
+
 var app = angular.module('app', ['ngRoute', 'toastr']);
 app.run(function($rootScope, $location) {
   $rootScope.$on("$routeChangeError", function(e, next, prev, err) {
@@ -18,5 +19,9 @@ app.run(function($rootScope, $location) {
 
 app.config(['$locationProvider', function($locationProvider) {
  $locationProvider.hashPrefix('');
+}]);
+
+app.config(['$qProvider', function ($qProvider) {
+  $qProvider.errorOnUnhandledRejections(false);
 }]);
 
