@@ -4,6 +4,7 @@ const helpers = require('./helpers');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// set env variable to be checked by webpack
 const ENV = process.env.NODE.ENV = process.env.ENV = 'development';
 
 module.exports = {
@@ -14,19 +15,19 @@ module.exports = {
   },
 
   output: {
-    path: helpers.root('dist/dev'), // will build /dist/dev in the rrot directory
+    path: helpers.root('dist/dev'), // will build /dist/dev from root directory
     publicPath: '/',  // important if using webpack devserver
-    filename: '[name].bundle.js', // uses entry proprty 'ng1' to output ng1.bundle.js 
+    filename: '[name].bundle.js', // uses entry proprty 'ng1', 'app' to output ng1.bundle.js and ng1.bundle.js 
     chunkFilename: '[id].chunk.js'  // users commonChunkPlugin to output compiled webpack runtime
   },
 
-  // set up your file extensions, check for ts first then js
+  // set up your file extensions for webpack to check for to compile, check for ts first then js if no ts file exists for that name
   resolve: {
     extensions: ['.ts', '.js']
   },
   // set up our library module loaders
     // awesome-typescript-loader : translate js to ts
-    // angular2-template-loader: translate templateUrls to a require statement ...
+    // angular2-template-loader: translate ng2 templateUrls to a require statement(node/commonjs module building) ...
     // ...and inline the templates
   module: {
     rules: [
@@ -56,8 +57,7 @@ module.exports = {
       "fallbackModuleFilenameTemplate": "[resource-path]?[hash]",
       "sourceRoot": "webpack:///"
     }),
-    // this plugin takes a template, HTML and any bundles webpack creates, and add references...
-    //  ... to those bundles to the template html file.
+    // this plugin takes a template, to build off on (adding refs to bundles webpack creates)
     new HtmlWebpackPlugin({
       template: 'config/index.html'
     }),
