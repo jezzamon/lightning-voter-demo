@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const helpers = require('./helpers');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // set env variable to be checked by webpack
 const ENV = process.env.NODE.ENV = process.env.ENV = 'development';
@@ -11,6 +12,7 @@ module.exports = {
   // point of entry for webpack, relative path - -webpack executes from root
   entry: {
     'polyfills': './public/polyfills.ts',
+    'vendor': './public/vendor.ts',
     'ng1': './public/index.ts',
     'app': './public/main.ts'
   },
@@ -50,6 +52,14 @@ module.exports = {
       name: 'common',
       minChunks: Infinity
     }),
+  
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      // only pull from following two chunks, if they exist in both, add to vendor bundle
+      chunks: ['vendor', 'app'],
+      // minChunks - if library is used in two bundles, it will go here
+      minChunks: 2
+    }),
 
     // setup webpack to output sourcemap files
     new webpack.SourceMapDevToolPlugin({
@@ -60,7 +70,9 @@ module.exports = {
     }),
     // this plugin takes a template, to build off on (adding refs to bundles webpack creates)
     new HtmlWebpackPlugin({
-      template: 'config/index.html'
+      template: 'config/index.html',
+      // define which chunks to add in dynamically (the rest we added in template so they load in order)
+      chunks: ['app']
     }),
     // define the current environment variables here
     new webpack.DefinePlugin({
@@ -70,6 +82,14 @@ module.exports = {
     }),
 
     // plugin to handle supressing of unecssary critical warnings when webpack tries to import core.js
-    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, helpers.root(__dirname, './src'))
+    new webpack.ContextReplacementPlugin(
+      /\@angular(\\|\/)core(\\|\/)esm5/, 
+      helpers.root(__dirname, './src'), {}
+    ),
+
+    // uncomment to see visualization of bundles in html
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // })
   ]
 }
