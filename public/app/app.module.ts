@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NameParser} from './admin/nameParser.servce';
 import { UnreviewedTalkComponent } from './home/unreviewedTalk.component';
+import { TalkDurationPipe } from './common/talkDuration.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { UnreviewedTalkComponent } from './home/unreviewedTalk.component';
   ],
   declarations: [
     AppComponent,
-    UnreviewedTalkComponent
+    UnreviewedTalkComponent,
+    TalkDurationPipe
   ],
   providers: [
     NameParser
