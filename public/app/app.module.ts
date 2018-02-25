@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { NameParser} from './admin/nameParser.servce';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   providers: [
-
+    NameParser
   ],
   bootstrap: [
     AppComponent
