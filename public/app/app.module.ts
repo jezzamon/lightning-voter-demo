@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NameParser} from './admin/nameParser.servce';
+import { UnreviewedTalkComponent } from './home/unreviewedTalk.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NameParser} from './admin/nameParser.servce';
     UpgradeModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    UnreviewedTalkComponent
   ],
   providers: [
     NameParser
@@ -24,7 +26,7 @@ import { NameParser} from './admin/nameParser.servce';
     AppComponent
   ],
   entryComponents: [
-
+    UnreviewedTalkComponent
   ]
 
 })
