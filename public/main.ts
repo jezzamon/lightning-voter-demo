@@ -1,28 +1,38 @@
-//bring in shims to make sure angular2 works for web browsers
-import 'core-js/es7/reflect';
-import 'core-js/client/shim';
-import 'zone.js/dist/zone';
+
+
 
 import {setAngularLib} from '@angular/upgrade/static';
 // import * as angular from 'angular';
 
 // setAngularLib(angular);
 // used to bootstrap ng2 app
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
-import { UpgradeModule } from '@angular/upgrade/static';
+import { UpgradeModule, downgradeInjectable, downgradeComponent } from '@angular/upgrade/static';
 
 import { AppModule } from './app/app.module';
+import { NameParser } from './app/admin/nameParser.servce';
+import { UnreviewedTalkComponent } from './app/home/unreviewedTalk.component';
+
+declare var angular: angular.IAngularStatic;
+
 
 // Bootstrap app by referencing the app module
 // bootsrap our angular 2 app first then bootstrap angular 1 using upgrade module
 platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
-  // upgrades & downgrades
+  // downgrades
+  angular.module('app')
+    .factory('nameParser', downgradeInjectable(NameParser))
+    .directive('unreviewedTalk', downgradeComponent({
+      component: UnreviewedTalkComponent
+    }))
+  const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   
+  // set a timeout so that angular2 can be fully bootstrapped before bootstrapping angular 1
   setTimeout(function() {
-    const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
-    upgrade.bootstrap(document.body, ['app']);
-    console.log('hybrid app bootstrapped');
-  }, 1000)
+    upgrade.bootstrap(document.documentElement, ['app']);
+  },2000)
+    
   
+  console.log('hybrid app bootstrapped');
 })
