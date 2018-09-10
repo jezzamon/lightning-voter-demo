@@ -3,6 +3,10 @@ import 'core-js/es7/reflect';
 import 'core-js/client/shim';
 import 'zone.js/dist/zone';
 
+import {setAngularLib} from '@angular/upgrade/static';
+// import * as angular from 'angular';
+
+// setAngularLib(angular);
 // used to bootstrap ng2 app
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -15,7 +19,10 @@ import { AppModule } from './app/app.module';
 platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
   // upgrades & downgrades
   
-  const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
-  upgrade.bootstrap(document.body, ['app']);
-  console.log('hybrid app bootstrapped');
+  setTimeout(function() {
+    const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+    upgrade.bootstrap(document.body, ['app']);
+    console.log('hybrid app bootstrapped');
+  }, 1000)
+  
 })
